@@ -1,4 +1,3 @@
-# azure-pipelines.yml
 trigger:
 - main
 
@@ -15,7 +14,10 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
+- task: AWSCLI@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'frontend-artifacts'
+    awsCredentials: 'aws-s3-connection'
+    regionName: 'us-east-1'  # e.g., us-east-1
+    command: 's3'
+    arguments: 'cp "$(Build.ArtifactStagingDirectory)/index.html" s3://hello-world-devops-pc/frontend/index.html --acl public-read'
+  displayName: 'Upload index.html to S3'
