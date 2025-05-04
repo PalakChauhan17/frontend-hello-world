@@ -17,7 +17,9 @@ steps:
 - task: AWSCLI@1
   inputs:
     awsCredentials: 'aws-s3-connection'
+    awsCommand: 's3'
+    awsSubCommand: 'cp'
+    awsArguments: '$(Build.ArtifactStagingDirectory)/index.html s3://hello-world-devops-pc/frontend/index.html --acl public-read'
     regionName: 'us-east-1'  # e.g., us-east-1
-    command: 's3'
-    arguments: 'cp "$(Build.ArtifactStagingDirectory)/index.html" s3://hello-world-devops-pc/frontend/index.html --acl public-read'
   displayName: 'Upload index.html to S3'
+
