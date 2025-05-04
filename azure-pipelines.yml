@@ -19,7 +19,8 @@ steps:
     awsCredentials: 'aws-s3-connection'
     awsCommand: 's3'
     awsSubCommand: 'cp'
-    awsArguments: '$(Build.ArtifactStagingDirectory)/index.html s3://hello-world-devops-pc/frontend/index.html --acl public-read'
-    regionName: 'us-east-1'  # e.g., us-east-1
+    awsArguments: '$(Build.ArtifactStagingDirectory)/index.html s3://hello-world-devops-pc/frontend/index.html'
+    regionName: 'us-east-1'
   displayName: 'Upload index.html to S3'
+
 
